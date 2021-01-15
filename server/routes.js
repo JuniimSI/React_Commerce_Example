@@ -17,7 +17,10 @@ const upload = multer({ storage })
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-routes.get("/", (req, res) => res.render("home"))
+//routes.get("/", (req, res) => res.render("home"))
+routes.get('/', (req, res) => {
+    return res.json(data.products);
+})
 
 routes.get("/register", (req, res) => res.render("register"))
 
