@@ -9,7 +9,9 @@ app.set("view engine", "ejs")
 
 
 const port = process.env.PORT || 5000;
-
 app.use(routes);
-
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+
+//app.use('/.netlify/functions/server', routes);
+//module.exports.handler = serverless(app);
