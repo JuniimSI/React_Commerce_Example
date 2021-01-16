@@ -6,17 +6,16 @@ const multer = require("multer");
 const path = require("path");
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "uploads/")
+        cb(null, "public/uploads/")
     },
     filename: (req, file, cb) => {
-        cb(null, req.body.id+path.extname(file.originalname));
+        cb(null, req.body.id + path.extname(file.originalname));
     },
 })
 const upload = multer({ storage })
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//routes.get("/", (req, res) => res.render("home"))
 
 //Get List Of Products
 routes.get('/', (req, res) => {
@@ -30,11 +29,23 @@ routes.get('/show/:id', (req, res) => {
     else res.sendStatus(404);
 })
 
+// routes.post('/create', (req, res) => {
+
+//     const { id, product_name, description, price, currency } = req.body;
+//     console.log(req.body + "------------------------\n" + req.body.file);
+//     data.products.push({ id, product_name, description, price, currency })
+//     fs.writeFile('./data/products.json', JSON.stringify(data), (error) => {
+//         if (error) return res.status(400).json({ message: "Error while register" });
+//     })
+//     res.send(req.body);
+
+// })
+
 routes.post('/create', upload.single('img'), (req, res) => {
         const { id, product_name, description, price, currency } = req.body;
         const thumb = './uploads/'+id+path.extname(req.file.originalname);
         data.products.push({ id, product_name, description, price, currency, thumb })
-    
+
         fs.writeFile('./data/products.json', JSON.stringify(data), (error) => {
             if (error) return res.status(400).json({ message: "Error while register" });
         })
@@ -75,13 +86,17 @@ routes.delete('/delete/:id', (req, res) => {
     res.sendStatus(204);
 })
 
-routes.get("/register", (req, res) => {
-    console.log("Chega aqui")
-    res.sendFile(path.join(__dirname +"/about.html"))
-})
-/////////////////////////////routes.get("/register", (req, res) => res.render("register"))
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+routes.get("/register", (req, res) => {
+    res.sendFile(path.join(__dirname + "/views/register.html"))
+})
+
+
 
 // routes.post('/products/create/json', upload.single('img'), (req, res) => {
 //     const { id, product_name, description, price, currency } = req.body;
@@ -95,15 +110,15 @@ routes.get("/register", (req, res) => {
 // })
 
 // routes.put('/products/update/:id', (req, res) => {
-    
+
 // })
 
 // routes.get('/products/show/:id', (req, res) => {
-    
+
 // })
 
 // routes.delete('/products/delete/:id', (req, res) => {
-    
+
 // })
 
 module.exports = routes;

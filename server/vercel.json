@@ -1,35 +1,54 @@
 {
     "version": 2,
-    "builds": [{"src": "index.js", "use":"@now/node-server"}],
+    "builds": [
+        {
+            "src": "index.js",
+            "use": "@now/node-server"
+        }
+    ],
     "routes": [
         {
             "src": "/",
             "dest": "index.js",
-            "methods": ["GET"]
+            "methods": [
+                "GET"
+            ]
         },
         {
             "src": "/edit/(?<id>[^/]+)",
             "dest": "index.js?id=$id",
-            "methods": ["PUT"]
+            "methods": [
+                "PUT"
+            ]
         },
         {
             "src": "/delete/(?<id>[^/]+)",
             "dest": "index.js?id=$id",
-            "methods": ["DELETE"]
+            "methods": [
+                "DELETE"
+            ]
         },
         {
             "src": "/show/(?<id>[^/]+)",
             "dest": "index.js?id=$id",
-            "methods": ["GET"]
+            "methods": [
+                "GET"
+            ]
         },
         {
-            "src": "/create/",
-            "dest": "index.js",
-            "methods": ["POST"]
-        },{
+            "src": "/create",
+            "dest": "index.js?id=$id",
+            "methods": [
+                "POST"
+            ]
+        },
+        {
             "src": "/register",
             "dest": "index.js"
-            
+        },
+        {
+            "src": "/uploads/(.*)",
+            "dest": "./public/uploads/$1"
         }
     ]
 }

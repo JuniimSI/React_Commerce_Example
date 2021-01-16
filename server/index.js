@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set("view engine", "ejs")
-
+app.use(express.static('public'));
 
 const port = process.env.PORT || 5000;
 app.use(routes);
