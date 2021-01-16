@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////q///////////////////////////////////////////
 
 
 //Get List Of Products
@@ -43,7 +44,8 @@ routes.get('/show/:id', (req, res) => {
 
 routes.post('/create', upload.single('img'), (req, res) => {
         const { id, product_name, description, price, currency } = req.body;
-        const thumb = './uploads/'+id+path.extname(req.file.originalname);
+        var imageAsBase64 = fs.readFileSync(`./public/uploads/${id+path.extname(req.file.originalname)}`, 'base64');
+        const thumb = imageAsBase64; //'./uploads/'+id+path.extname(req.file.originalname);
         data.products.push({ id, product_name, description, price, currency, thumb })
 
         fs.writeFile('./data/products.json', JSON.stringify(data), (error) => {
