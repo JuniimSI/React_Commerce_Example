@@ -4,7 +4,32 @@
     "routes": [
         {
             "src": "/",
+            "dest": "index.js",
+            "methods": ["GET"]
+        },
+        {
+            "src": "/edit/(?<id>[^/]+)",
+            "dest": "index.js?id=$id",
+            "methods": ["PUT"]
+        },
+        {
+            "src": "/delete/(?<id>[^/]+)",
+            "dest": "index.js?id=$id",
+            "methods": ["DELETE"]
+        },
+        {
+            "src": "/show/(?<id>[^/]+)",
+            "dest": "index.js?id=$id",
+            "methods": ["GET"]
+        },
+        {
+            "src": "/create/",
+            "dest": "index.js",
+            "methods": ["POST"]
+        },{
+            "src": "/register",
             "dest": "index.js"
+            
         }
     ]
 }
