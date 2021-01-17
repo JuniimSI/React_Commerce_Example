@@ -2,17 +2,17 @@ const express = require('express');
 const routes = express.Router();
 const fs = require('fs');
 const data = require('./data/products.json');
-const multer = require("multer");
-const path = require("path");
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "public/uploads/")
-    },
-    filename: (req, file, cb) => {
-        cb(null, req.body.id + path.extname(file.originalname));
-    },
-})
-const upload = multer({ storage })
+//const multer = require("multer");
+//const path = require("path");
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, "public/uploads/")
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, req.body.id + path.extname(file.originalname));
+//     },
+// })
+// const upload = multer({ storage })
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////q///////////////////////////////////////////
@@ -42,11 +42,12 @@ routes.get('/show/:id', (req, res) => {
 
 // })
 
-routes.post('/create', upload.single('img'), (req, res) => {
-        const { id, product_name, description, price, currency } = req.body;
-        var imageAsBase64 = fs.readFileSync(`./public/uploads/${id+path.extname(req.file.originalname)}`, 'base64');
-        const thumb = imageAsBase64; //'./uploads/'+id+path.extname(req.file.originalname);
-        data.products.push({ id, product_name, description, price, currency, thumb })
+routes.post('/create', (req, res) => {
+        const { id, product_name, description, price, img } = req.body;
+        //var imageAsBase64 = fs.readFileSync(`./public/uploads/${id+path.extname(req.file.originalname)}`, 'base64');
+       // const thumb = imageAsBase64; //'./uploads/'+id+path.extname(req.file.originalname);
+        const currency = "R$";
+        data.products.push({ id, product_name, description, price, currency, img })
 
         fs.writeFile('./data/products.json', JSON.stringify(data), (error) => {
             if (error) return res.status(400).json({ message: "Error while register" });
