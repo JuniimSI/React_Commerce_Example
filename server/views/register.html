@@ -10,33 +10,33 @@
 </head>
 
 <body>
-    <div class="container">
+    <div className="container">
         <h1>Cadastro de um novo produto</h1>
 
      
 
                         <form method="post" enctype="multipart/form-data" action="/create">
-                            <div class="form-group">
-                                <label for="id" class="form-label">Código do Produto</label>
-                                <input type="text" class="form-control" name="id" id="id">
+                            <div className="form-group">
+                                <label for="id" className="form-label">Código do Produto</label>
+                                <input type="text" className="form-control" name="id" id="id">
                             </div>
-                            <div class="form-group">
-                                <label for="product_name" class="form-label">Nome do Produto</label>
-                                <input type="text" class="form-control" name="product_name" id="product_name">
+                            <div className="form-group">
+                                <label for="product_name" className="form-label">Nome do Produto</label>
+                                <input type="text" className="form-control" name="product_name" id="product_name">
                             </div>
-                            <div class="form-group">
-                                <label for="description" class="form-label">Descrição</label>
-                                <input type="text" class="form-control" name="description" id="description">
+                            <div className="form-group">
+                                <label for="description" className="form-label">Descrição</label>
+                                <input type="text" className="form-control" name="description" id="description">
                             </div>
-                            <div class="form-group">
-                                <label for="price" class="form-label">Price</label>
-                                <input type="number" step="0.01" name="price" id="price" class="form-control">
+                            <div className="form-group">
+                                <label for="price" className="form-label">Price</label>
+                                <input type="number" step="0.01" name="price" id="price" className="form-control">
                             </div>
-                            <div class="form-group"> 
-                                <label for="img" class="form-label">Imagem do Produto</label>
-                                <input type="file"  class="form-control"  name="img" id="img" />
+                            <div className="form-group"> 
+                                <label for="img" className="form-label">Imagem do Produto</label>
+                                <input type="file"  className="form-control"  name="img" id="img" />
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" className="btn btn-primary">Submit</button>
                         </form>
 
     </div>

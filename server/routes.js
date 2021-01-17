@@ -2,6 +2,8 @@ const express = require('express');
 const routes = express.Router();
 const fs = require('fs');
 const data = require('./data/products.json');
+const cors = require("cors");
+
 //const multer = require("multer");
 //const path = require("path");
 // const storage = multer.diskStorage({
@@ -42,7 +44,7 @@ routes.get('/show/:id', (req, res) => {
 
 // })
 
-routes.post('/create', (req, res) => {
+routes.post('/create', cors(), (req, res) => {
         const { id, product_name, description, price, img } = req.body;
         //var imageAsBase64 = fs.readFileSync(`./public/uploads/${id+path.extname(req.file.originalname)}`, 'base64');
        // const thumb = imageAsBase64; //'./uploads/'+id+path.extname(req.file.originalname);
