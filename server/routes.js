@@ -3,7 +3,7 @@ const routes = express.Router();
 const fs = require('fs');
 const data = require('./data/products.json');
 const cors = require("cors");
-
+routes.options('*', cors()); // include before other routes
 //const multer = require("multer");
 //const path = require("path");
 // const storage = multer.diskStorage({

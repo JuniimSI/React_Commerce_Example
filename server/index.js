@@ -2,7 +2,9 @@ const express = require('express');
 const routes = require('./routes');
 const app = express();
 const cors = require('cors')
-
+// Enable CORS
+app.use(cors());
+app.options('*', cors());
 //Deps
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -11,9 +13,8 @@ app.use(bodyParser.json());
 app.set("view engine", "ejs")
 
 app.use(express.static('public'));
-// Enable CORS
-app.use(cors());
-app.options('*', cors());
+
+
 
 // app.use((req, res, next) => {
 //   res.header('Access-Control-Allow-Origin', '*');
